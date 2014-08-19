@@ -22,15 +22,24 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
     protected $config;
     /** @var  \Composer\Util\Filesystem $filesystem */
     protected $filesystem;
+    /** @var  array $rules */
+    protected $rules;
 
+    /**
+     * {@inheritDoc}
+     */
     public function activate(Composer $composer, IOInterface $io)
     {
         $this->composer = $composer;
         $this->io = $io;
         $this->config = $composer->getConfig();
         $this->filesystem = new Filesystem();
+        $this->rules = require __DIR__ . '/rules.php';
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     public static function getSubscribedEvents()
     {
         return array(
@@ -42,7 +51,10 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             ),
         );
     }
-    
+
+    /**
+     * Function to run after a package has been installed
+     */
     public function onPostPackageInstall(PackageEvent $event)
     {
         /** @var \Composer\Package\CompletePackage $package */
@@ -50,7 +62,10 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
 
         $this->cleanPackage($package);
     }
-    
+
+    /**
+     * Function to run after a package has been updated
+     */
     public function onPostPackageUpdate(PackageEvent $event)
     {
         /** @var \Composer\Package\CompletePackage $package */
@@ -59,18 +74,23 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $this->cleanPackage($package);
     }
 
+    /**
+     * Clean a package, based on its rules.
+     *
+     * @param Package  $package  The package to clean
+     * @return bool True if cleaned
+     */
     protected function cleanPackage(Package $package)
     {
         $vendorDir = $this->config->get('vendor-dir');
-        $packageDir = $package->getName();
+        $targetDir = $package->getTargetDir();
+        $packageName = $package->getName();
+        $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName ;
 
-        //TODO; get rules from config file or $package->getExtra()
-        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* package* examples doc docs';
-        $tests = '.travis.yml phpunit.xml* test tests Tests';
-        $rule = "{$docs} {$tests}";
+        $rule = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
 
-        if (!file_exists($vendorDir . '/' . $packageDir)) {
-            return;
+        if (!$rule || !file_exists($vendorDir . '/' . $packageDir)) {
+            return false;
         }
 
         foreach (explode(' ', $rule) as $pattern) {
@@ -81,10 +101,12 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
                 foreach (iterator_to_array($finder) as $file) {
                     $this->filesystem->remove($file);
                 }
-                
+
             } catch (\Exception $e) {
                 $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
             }
         }
+
+        return true;
     }
 }
