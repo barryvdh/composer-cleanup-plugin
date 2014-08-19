@@ -7,9 +7,9 @@ use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\ScriptEvents;
-use Composer\Script\PackageEvent;
+use Composer\Script\CommandEvent;
 use Composer\Util\Filesystem;
-use Composer\Package\Package;
+use Composer\Package\BasePackage;
 use Symfony\Component\Finder\Finder;
 
 class CleanupPlugin implements PluginInterface, EventSubscriberInterface
@@ -43,44 +43,41 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            ScriptEvents::POST_PACKAGE_INSTALL  => array(
-                array('onPostPackageInstall', 0)
+            ScriptEvents::POST_INSTALL_CMD  => array(
+                array('onPostInstallUpdateCmd', 0)
             ),
-            ScriptEvents::POST_PACKAGE_UPDATE  => array(
-                array('onPostPackageUpdate', 0)
+            ScriptEvents::POST_UPDATE_CMD  => array(
+                array('onPostInstallUpdateCmd', 0)
             ),
+
         );
     }
 
     /**
-     * Function to run after a package has been installed
-     */
-    public function onPostPackageInstall(PackageEvent $event)
-    {
-        /** @var \Composer\Package\CompletePackage $package */
-        $package = $event->getOperation()->getPackage();
-
-        $this->cleanPackage($package);
-    }
-
-    /**
      * Function to run after a package has been updated
+     *
+     * @param CommandEvent $event
      */
-    public function onPostPackageUpdate(PackageEvent $event)
+    public function onPostInstallUpdateCmd(CommandEvent $event)
     {
-        /** @var \Composer\Package\CompletePackage $package */
-        $package = $event->getOperation()->getTargetPackage();
+        /** @var \Composer\Repository\WritableRepositoryInterface $repository */
+        $repository = $this->composer->getRepositoryManager()->getLocalRepository();
 
-        $this->cleanPackage($package);
+        /** @var \Composer\Package\CompletePackage $package */
+        foreach($repository->getPackages() as $package){
+            if ($package instanceof BasePackage) {
+                $this->cleanPackage($package);
+            }
+        }
     }
 
     /**
      * Clean a package, based on its rules.
      *
-     * @param Package  $package  The package to clean
+     * @param BasePackage  $package  The package to clean
      * @return bool True if cleaned
      */
-    protected function cleanPackage(Package $package)
+    protected function cleanPackage(BasePackage $package)
     {
         $vendorDir = $this->config->get('vendor-dir');
         $targetDir = $package->getTargetDir();
