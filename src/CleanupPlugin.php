@@ -34,7 +34,7 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $this->io = $io;
         $this->config = $composer->getConfig();
         $this->filesystem = new Filesystem();
-        $this->rules = require __DIR__ . '/rules.php';
+        $this->rules = CleanupRules::getRules();
     }
 
     /**

@@ -17,5 +17,5 @@ Require this package in your composer.json:
 
 ## Adding rules
 
-Please submit a PR to [src/rules.php](https://github.com/barryvdh/composer-cleanup-plugin/blob/master/src/rules.php) to add more rules for packages.
+Please submit a PR to [src/CleanupRules.php](https://github.com/barryvdh/composer-cleanup-plugin/blob/master/src/CleanupRules.php) to add more rules for packages.
 Make sure you test them first, sometimes tests dirs are classmapped and will error when deleted.
