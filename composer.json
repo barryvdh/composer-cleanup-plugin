@@ -20,5 +20,5 @@
     },
     "extra": {
         "class": "Barryvdh\\Composer\\CleanupPlugin"
-    },
+    }
 }
