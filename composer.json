@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "composer-plugin-api": "1.0.0",
-        "symfony/finder": "~2.2"
+        "composer-plugin-api": "1.0.0"
     },
     "autoload": {
         "psr-4": {

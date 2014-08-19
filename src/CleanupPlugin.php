@@ -10,7 +10,6 @@ use Composer\Script\ScriptEvents;
 use Composer\Script\CommandEvent;
 use Composer\Util\Filesystem;
 use Composer\Package\BasePackage;
-use Symfony\Component\Finder\Finder;
 
 class CleanupPlugin implements PluginInterface, EventSubscriberInterface
 {
@@ -49,7 +48,6 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             ScriptEvents::POST_UPDATE_CMD  => array(
                 array('onPostInstallUpdateCmd', 0)
             ),
-
         );
     }
 
@@ -85,23 +83,23 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName ;
 
         $rule = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
+        if(!$rule){
+            return;
+        }
 
-        if (!$rule || !file_exists($vendorDir . '/' . $packageDir)) {
+        $dir = $this->filesystem->normalizePath(realpath($vendorDir . '/' . $packageDir));
+        if (!is_dir($dir)) {
             return false;
         }
 
-        foreach (explode(' ', $rule) as $pattern) {
-            try {
-                $finder = Finder::create()->name($pattern)->in( $vendorDir . '/' . $packageDir);
-
-                /** @var \SplFileInfo $file */
-                foreach (iterator_to_array($finder) as $file) {
-                    $this->filesystem->remove($file);
-                }
-
-            } catch (\Exception $e) {
-                $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
+        // Make 1 pattern, surrounded by braces
+        $pattern = '{' . implode(',', explode(' ', $rule)) . '}';
+        try {
+            foreach (glob($dir.'/'.$pattern, GLOB_BRACE) as $file) {
+                $this->filesystem->remove($file);
             }
+        } catch (\Exception $e) {
+            $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
         }
 
         return true;
