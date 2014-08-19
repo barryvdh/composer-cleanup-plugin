@@ -20,5 +20,10 @@
     },
     "extra": {
         "class": "Barryvdh\\Composer\\CleanupPlugin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
     }
 }
