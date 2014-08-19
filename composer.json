@@ -1,0 +1,24 @@
+{
+    "name": "barryvdh/composer-cleanup-login",
+    "type": "composer-plugin",
+    "description": "A composer cleanup plugin, to remove tests and documentation to save space",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barry vd. Heuvel",
+            "email": "barryvdh@gmail.com"
+        }
+    ],
+    "require": {
+        "composer-plugin-api": "1.0.0",
+        "symfony/finder": "~2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barryvdh\\Composer\\": "src/"
+        }
+    },
+    "extra": {
+        "class": "Barryvdh\\Composer\\CleanupPlugin"
+    },
+}
