@@ -7,6 +7,7 @@ use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\ScriptEvents;
+use Composer\Script\PackageEvent;
 use Composer\Script\CommandEvent;
 use Composer\Util\Filesystem;
 use Composer\Package\BasePackage;
@@ -42,13 +43,41 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            ScriptEvents::POST_INSTALL_CMD  => array(
+            ScriptEvents::POST_PACKAGE_INSTALL  => array(
+                array('onPostPackageInstall', 0)
+            ),
+            ScriptEvents::POST_PACKAGE_UPDATE  => array(
+                array('onPostPackageUpdate', 0)
+            ),
+            /*ScriptEvents::POST_INSTALL_CMD  => array(
                 array('onPostInstallUpdateCmd', 0)
             ),
             ScriptEvents::POST_UPDATE_CMD  => array(
                 array('onPostInstallUpdateCmd', 0)
-            ),
+            ),*/
         );
+    }
+
+    /**
+     * Function to run after a package has been installed
+     */
+    public function onPostPackageInstall(PackageEvent $event)
+    {
+        /** @var \Composer\Package\CompletePackage $package */
+        $package = $event->getOperation()->getPackage();
+
+        $this->cleanPackage($package);
+    }
+
+    /**
+     * Function to run after a package has been updated
+     */
+    public function onPostPackageUpdate(PackageEvent $event)
+    {
+        /** @var \Composer\Package\CompletePackage $package */
+        $package = $event->getOperation()->getTargetPackage();
+
+        $this->cleanPackage($package);
     }
 
     /**
