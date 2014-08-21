@@ -106,6 +106,11 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
      */
     protected function cleanPackage(BasePackage $package)
     {
+        // Only clean 'dist' packages
+        if ($package->getInstallationSource() !== 'dist') {
+            return false;
+        }
+
         $vendorDir = $this->config->get('vendor-dir');
         $targetDir = $package->getTargetDir();
         $packageName = $package->getName();
