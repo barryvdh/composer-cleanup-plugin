@@ -113,7 +113,7 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
 
         $vendorDir = $this->config->get('vendor-dir');
         $targetDir = $package->getTargetDir();
-        $packageName = $package->getName();
+        $packageName = $package->getPrettyName();
         $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName ;
 
         $rule = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
