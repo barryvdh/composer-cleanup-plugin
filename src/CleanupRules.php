@@ -7,14 +7,15 @@ class CleanupRules
     public static function getRules()
     {
         // Default patterns for common files
-        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* package* examples doc docs';
-        $tests = '.travis.yml phpunit.xml* test tests Tests';
+        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* package* demo example examples doc docs readme*';
+        $tests = '.travis.yml .scrutinizer.yml phpunit.xml* phpunit.php test tests Tests';
         $standard = "{$docs} {$tests}";
 
         return array(
 
             // Symfony components
             'symfony/browser-kit'                   => "{$standard}",
+            'symfony/class-loader'                  => "{$standard}",
             'symfony/console'                       => "{$standard}",
             'symfony/css-selector'                  => "{$standard}",
             'symfony/debug'                         => "{$standard}",
@@ -27,12 +28,14 @@ class CleanupRules
             'symfony/process'                       => "{$standard}",
             'symfony/routing'                       => "{$standard}",
             'symfony/security'                      => "{$standard}",
+            'symfony/security-core'                 => "{$standard}",
             'symfony/translation'                   => "{$standard}",
 
             // Default Laravel 4 install
             'd11wtq/boris'                          => "{$standard}",
             'filp/whoops'                           => "{$standard}",
             'ircmaxell/password-compat'             => "{$standard}",
+            'jeremeamia/SuperClosure'               => "{$standard}",
             'laravel/framework'                     => "{$standard} build",
             'monolog/monolog'                       => "{$standard}",
             'nesbot/carbon'                         => "{$standard}",
@@ -44,9 +47,10 @@ class CleanupRules
             'swiftmailer/swiftmailer'               => "{$standard} build* notes test-suite create_pear_package.php",
 
             // Common packages
-            'anahkiasen/former'                     => "{$docs} phpunit.xml* tests/*",
+            'anahkiasen/former'                     => "{$standard}",
             'anahkiasen/html-object'                => "{$docs} phpunit.xml* tests/*",
             'anahkiasen/underscore-php'             => "{$standard}",
+            'anahkiasen/rocketeer'                  => "{$standard}",
             'barryvdh/laravel-debugbar'             => "{$standard}",
             'bllim/datatables'                      => "{$standard}",
             'cartalyst/sentry'                      => "{$standard}",
@@ -62,11 +66,13 @@ class CleanupRules
             'guzzlehttp/guzzle'                     => "{$standard}",
             'guzzlehttp/oauth-subscriber'           => "{$standard}",
             'guzzlehttp/streams'                    => "{$standard}",
+            'imagine/imagine'                       => "{$standard} lib/Imagine/resources lib/Imagine/Test",
             'intervention/image'                    => "{$standard} public",
             'jasonlewis/basset'                     => "{$standard}",
             'jeremeamia/SuperClosure'               => "{$standard} demo",
             'kriswallsmith/assetic'                 => "{$standard}",
             'leafo/lessphp'                         => "{$standard} Makefile package.sh",
+            'league/stack-robots'                   => "{$standard}",
             'maximebf/debugbar'                     => "{$standard} demo",
             'mockery/mockery'                       => "{$standard}",
             'mrclay/minify'                         => "{$standard} MIN.txt min_extras min_unit_tests min/builder min/config* min/quick-test* min/utils.php min/groupsConfig.php min/index.php",
@@ -76,6 +82,7 @@ class CleanupRules
             'phpdocumentor/reflection-docblock'     => "{$standard}",
             'phpoffice/phpexcel'                    => "{$standard} Examples unitTests changelog.txt",
             'rcrowe/twigbridge'                     => "{$standard}",
+            'tijsverkoyen/css-to-inline-styles'     => "{$standard}",
             'twig/twig'                             => "{$standard}",
             'venturecraft/revisionable'             => "{$standard}",
             'willdurand/geocoder'                   => "{$standard}",
