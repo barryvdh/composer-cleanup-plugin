@@ -82,6 +82,7 @@ class CleanupRules
             'phpdocumentor/reflection-docblock'     => "{$standard}",
             'phpoffice/phpexcel'                    => "{$standard} Examples unitTests changelog.txt",
             'rcrowe/twigbridge'                     => "{$standard}",
+            'simplepie/simplepie'                   => "{$standard} build compatibility_test ROADMAP.md",
             'tijsverkoyen/css-to-inline-styles'     => "{$standard}",
             'twig/twig'                             => "{$standard}",
             'venturecraft/revisionable'             => "{$standard}",
