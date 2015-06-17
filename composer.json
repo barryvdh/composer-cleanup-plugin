@@ -1,5 +1,5 @@
 {
-    "name": "barryvdh/composer-cleanup-login",
+    "name": "barryvdh/composer-cleanup-plugin",
     "type": "composer-plugin",
     "description": "A composer cleanup plugin, to remove tests and documentation to save space",
     "license": "MIT",
