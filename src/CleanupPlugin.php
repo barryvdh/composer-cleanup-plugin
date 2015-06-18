@@ -132,7 +132,7 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             
             foreach ($patterns as $pattern) {
                 try {
-                    foreach (glob($dir.'/'.$pattern, GLOB_BRACE) as $file) {
+                    foreach (glob($dir.'/'.$pattern) as $file) {
                         $this->filesystem->remove($file);
                     }
                 } catch (\Exception $e) {
