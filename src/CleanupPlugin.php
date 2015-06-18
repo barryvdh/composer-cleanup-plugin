@@ -116,8 +116,8 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $packageName = $package->getPrettyName();
         $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName ;
 
-        $rule = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
-        if(!$rule){
+        $rules = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
+        if(!$rules){
             return;
         }
 
@@ -126,15 +126,18 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             return false;
         }
 
-        foreach((array) $rule as $part) {
-            // Make 1 pattern, surrounded by braces, should be max 260 chars
-            $pattern = '{' . implode(',', explode(' ', $part)) . '}';
-            try {
-                foreach (glob($dir.'/'.$pattern, GLOB_BRACE) as $file) {
-                    $this->filesystem->remove($file);
+        foreach((array) $rules as $part) {
+            // Split patterns for single globs (should be max 260 chars)
+            $patterns = explode(' ', trim($part));
+            
+            foreach ($patterns as $pattern) {
+                try {
+                    foreach (glob($dir.'/'.$pattern) as $file) {
+                        $this->filesystem->remove($file);
+                    }
+                } catch (\Exception $e) {
+                    $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
                 }
-            } catch (\Exception $e) {
-                $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
             }
         }
 
