@@ -8,7 +8,7 @@ class CleanupRules
     {
         // Default patterns for common files
         $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* package* demo example examples doc docs readme*';
-        $tests = '.travis.yml .scrutinizer.yml phpunit.xml* phpunit.php test tests Tests';
+        $tests = '.travis.yml .scrutinizer.yml phpunit.xml* phpunit.php test tests Tests travis';
 
         return array(
 
@@ -29,8 +29,10 @@ class CleanupRules
             'symfony/security'                      => array($docs, $tests),
             'symfony/security-core'                 => array($docs, $tests),
             'symfony/translation'                   => array($docs, $tests),
+            'symfony/var-dumper'                    => array($docs, $tests),
 
             // Default Laravel 4 install
+            'classpreloader/classpreloader'         => array($docs, $tests),
             'd11wtq/boris'                          => array($docs, $tests),
             'filp/whoops'                           => array($docs, $tests),
             'ircmaxell/password-compat'             => array($docs, $tests),
@@ -40,8 +42,9 @@ class CleanupRules
             'nesbot/carbon'                         => array($docs, $tests),
             'nikic/php-parser'                      => array($docs, $tests, 'test_old'),
             'patchwork/utf8'                        => array($docs, $tests),
-            'phpseclib/phpseclib'                   => array($docs, $tests),
+            'phpseclib/phpseclib'                   => array($docs, $tests, 'build'),
             'predis/predis'                         => array($docs, $tests, 'bin'),
+            'psr/log'                               => array($docs, $tests),
             'stack/builder'                         => array($docs, $tests),
             'swiftmailer/swiftmailer'               => array($docs, $tests, 'build* notes test-suite create_pear_package.php'),
 
@@ -50,6 +53,7 @@ class CleanupRules
             'anahkiasen/html-object'                => array($docs, 'phpunit.xml* tests/*'),
             'anahkiasen/underscore-php'             => array($docs, $tests),
             'anahkiasen/rocketeer'                  => array($docs, $tests),
+            'barryvdh/composer-cleanup-plugin'      => array($docs, $tests),
             'barryvdh/laravel-debugbar'             => array($docs, $tests),
             'barryvdh/laravel-ide-helper'           => array($docs, $tests),
             'bllim/datatables'                      => array($docs, $tests),
