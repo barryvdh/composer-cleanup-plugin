@@ -126,14 +126,16 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             return false;
         }
 
-        // Make 1 pattern, surrounded by braces
-        $pattern = '{' . implode(',', explode(' ', $rule)) . '}';
-        try {
-            foreach (glob($dir.'/'.$pattern, GLOB_BRACE) as $file) {
-                $this->filesystem->remove($file);
+        foreach((array) $rule as $part) {
+            // Make 1 pattern, surrounded by braces, should be max 260 chars
+            $pattern = '{' . implode(',', explode(' ', $part)) . '}';
+            try {
+                foreach (glob($dir.'/'.$pattern, GLOB_BRACE) as $file) {
+                    $this->filesystem->remove($file);
+                }
+            } catch (\Exception $e) {
+                $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
             }
-        } catch (\Exception $e) {
-            $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
         }
 
         return true;
