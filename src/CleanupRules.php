@@ -48,6 +48,16 @@ class CleanupRules
             'stack/builder'                         => array($docs, $tests),
             'swiftmailer/swiftmailer'               => array($docs, $tests, 'build* notes test-suite create_pear_package.php'),
 
+            // Default Laravel 5 install
+            'danielstjules/stringy'                 => array($docs, $tests),
+            'dnoegel/php-xdg-base-dir'              => array($docs, $tests),
+            'jakub-onderka/php-console-color'       => array($docs, $tests, 'build.xml example.php'),
+            'jakub-onderka/php-console-highlighter' => array($docs, $tests, 'build.xml'),
+            'league/flysystem'                      => array($docs, $tests),
+            'mtdowling/cron-expression'             => array($docs, $tests),
+            'psy/psysh'                             => array($docs, $tests),
+            'vlucas/phpdotenv'                      => array($docs, $tests),
+
             // Common packages
             'anahkiasen/former'                     => array($docs, $tests),
             'anahkiasen/html-object'                => array($docs, 'phpunit.xml* tests/*'),
@@ -93,5 +103,4 @@ class CleanupRules
             'willdurand/geocoder'                   => array($docs, $tests),
         );
     }
-
 }
