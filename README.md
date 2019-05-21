@@ -21,10 +21,13 @@ This plugin will work automatically on any packages installed as `dist`. Therefo
 
 ## What does it do?
 
-For every installed or updated package in general:
+For every installed or updated package in the default list, in general:
 
 1. Remove documentation, such as README files, docs folders, etc.
 2. Remove tests, PHPUnit configs, and other build/CI configuration.
+
+Some packages don't obey the general rules, and remove more/less files. Packages that do not have
+rules added are ignored.
 
 ## Adding rules
 
