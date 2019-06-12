@@ -1,5 +1,5 @@
 {
-    "name": "barryvdh/composer-cleanup-plugin",
+    "name": "avto-dev/composer-cleanup-plugin",
     "type": "composer-plugin",
     "description": "A composer cleanup plugin, to remove tests and documentation to save space",
     "license": "MIT",
@@ -18,9 +18,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "0.3-dev"
-        },
         "class": "Barryvdh\\Composer\\CleanupPlugin"
     }
 }
