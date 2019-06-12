@@ -13,7 +13,9 @@ you can use this package to cut down the vendor directory by deleting files that
 
 Require this package in your composer.json:
 
-      "barryvdh/composer-cleanup-plugin": "0.2.x"
+```bash
+$ composer require avto-dev/composer-cleanup-plugin "^1.0"
+```
       
 ## Usage
 
