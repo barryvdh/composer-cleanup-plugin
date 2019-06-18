@@ -29,7 +29,7 @@ class CleanupRules
             'doctrine/cache'                        => array($docs, $tests, 'bin'),
             'doctrine/collections'                  => array($docs, $tests),
             'doctrine/common'                       => array($docs, $tests, 'bin lib/vendor'),
-            'doctrine/dbal'                         => array($docs, $tests, 'bin build* docs2 lib/vendor'),
+            'doctrine/dbal'                         => array($docs, $tests, 'build* docs2 lib/vendor'),
             'doctrine/inflector'                    => array($docs, $tests),
             'dompdf/dompdf'                         => array($docs, $tests, 'www'),
             'filp/whoops'                           => array($docs, $tests),
@@ -94,6 +94,7 @@ class CleanupRules
             'vlucas/phpdotenv'                      => array($docs, $tests),
             'willdurand/geocoder'                   => array($docs, $tests),
 
+            // since v1.0.1
             'binarytorch/larecipe'               => array ($docs, $tests, '.github package* *.js yarn.lock'),
             'doctrine/instantiator'              => array ($docs, $tests, 'docs *.dist'),
             'doctrine/lexer'                     => array ($docs, $tests, 'docs .github'),
@@ -137,6 +138,23 @@ class CleanupRules
             'symfony/stopwatch'                  => array ($docs, $tests),
             'symfony/translation-contracts'      => array ($docs, $tests),
             'theseer/tokenizer'                  => array ($docs, $tests),
+
+            // since v1.0.2
+            'anhskohbo/no-captcha'                  => array($docs, $tests),
+            'artesaos/seotools'                     => array($docs, $tests),
+            'deployer/phar-update'                  => array($docs, $tests),
+            'fedeisas/laravel-mail-css-inliner'     => array($docs, $tests),
+            'google/apiclient-services'             => array($docs, $tests),
+            'google/auth'                           => array($docs, $tests),
+            'johnkary/phpunit-speedtrap'            => array($docs, $tests),
+            'phenx/php-svg-lib'                     => array($docs, $tests),
+            'pimple/pimple'                         => array($docs, $tests, 'ext/pimple/tests'),
+            'rmccue/requests'                       => array($docs, $tests),
+            'sabberworm/php-css-parser'             => array($docs, $tests),
+            'sentry/sentry-laravel'                 => array($docs, $tests),
+            'stil/gd-text'                          => array($docs, $tests),
+            'theiconic/php-ga-measurement-protocol' => array($docs, $tests),
+            'unisharp/laravel-filemanager'          => array($docs, $tests),
         );
     }
 }
