@@ -17,7 +17,7 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
     public const SELF_PACKAGE_NAME = 'avto-dev/composer-cleanup-plugin';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function activate(Composer $composer, IOInterface $io): void
     {
@@ -68,7 +68,7 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
                 // Loop over defined targets for the package
                 foreach (\explode(' ', \trim((string) \preg_replace('~\s+~', ' ', $rules[$package_name]))) as $target) {
                     // Skip targets which contains `..`
-                    if (\strpos($target, '..') !== false) {
+                    if (\mb_strpos($target, '..') !== false) {
                         continue;
                     }
 
