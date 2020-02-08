@@ -1,6 +1,8 @@
 Composer Cleanup Plugin
 =======================
 
+[![Build Status][badge_build]][link_build]
+
 Remove tests & documentation from the vendor dir. Based on [laravel-vendor-cleanup](https://github.com/barryvdh/laravel-vendor-cleanup) but implemented as a Composer Plugin instead of a Laravel command.
 
 Usually disk size shouldn't be a problem, but when you have to use FTP to deploy or have very limited disk space,
@@ -37,3 +39,6 @@ Please submit a PR to [src/CleanupRules.php] to add more rules for packages.
 Make sure you test them first, sometimes tests dirs are classmapped and will error when deleted.
 
 [src/CleanupRules.php]:                               ./src/CleanupRules.php
+
+[badge_build]:https://img.shields.io/github/workflow/status/avto-dev/composer-cleanup-plugin/tests?logo=github
+[link_build]:https://github.com/avto-dev/composer-cleanup-plugin/actions
