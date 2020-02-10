@@ -3,6 +3,8 @@ Composer Cleanup Plugin
 
 Remove tests & documentation from the vendor dir. Based on [laravel-vendor-cleanup](https://github.com/barryvdh/laravel-vendor-cleanup) but implemented as a Composer Plugin instead of a Laravel command.
 
+> Alternative and updated version of this package also can be found here: [avto-dev/composer-cleanup-plugin](https://github.com/avto-dev/composer-cleanup-plugin)
+
 Usually disk size shouldn't be a problem, but when you have to use FTP to deploy or have very limited disk space,
 you can use this package to cut down the vendor directory by deleting files that aren't used in production (tests/docs etc).
 
