@@ -15,7 +15,7 @@ class CleanupRules
             'anahkiasen/html-object'                => array($docs, 'phpunit.xml* tests/*'),
             'anahkiasen/rocketeer'                  => array($docs, $tests),
             'anahkiasen/underscore-php'             => array($docs, $tests),
-            'aws/aws-sdk-php'                 		=> array($docs, $tests),
+            'aws/aws-sdk-php'                 		=> array($docs, $tests, 'src/XSD2PHP'),
             'barryvdh/composer-cleanup-plugin'      => array($docs, $tests),
             'barryvdh/laravel-debugbar'             => array($docs, $tests),
             'barryvdh/laravel-ide-helper'           => array($docs, $tests),
