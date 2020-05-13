@@ -11,6 +11,7 @@ class CleanupRules
         $tests = '.travis.yml .scrutinizer.yml phpcs.xml* phpcs.php phpunit.xml* phpunit.php test tests Tests travis patchwork.json';
 
         return array(
+            'tecnickcom/tcpdf'                     => array($docs, $tests, 'fonts'),
             'anahkiasen/former'                     => array($docs, $tests),
             'anahkiasen/html-object'                => array($docs, 'phpunit.xml* tests/*'),
             'anahkiasen/rocketeer'                  => array($docs, $tests),
