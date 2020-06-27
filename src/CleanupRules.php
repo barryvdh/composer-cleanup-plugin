@@ -11,10 +11,12 @@ class CleanupRules
         $tests = '.travis.yml .scrutinizer.yml phpcs.xml* phpcs.php phpunit.xml* phpunit.php test tests Tests travis patchwork.json';
 
         return array(
+            'tecnickcom/tcpdf'                     => array($docs, $tests, 'fonts'),
             'anahkiasen/former'                     => array($docs, $tests),
             'anahkiasen/html-object'                => array($docs, 'phpunit.xml* tests/*'),
             'anahkiasen/rocketeer'                  => array($docs, $tests),
             'anahkiasen/underscore-php'             => array($docs, $tests),
+            'aws/aws-sdk-php'                 	    => array($docs, $tests),
             'barryvdh/composer-cleanup-plugin'      => array($docs, $tests),
             'barryvdh/laravel-debugbar'             => array($docs, $tests),
             'barryvdh/laravel-ide-helper'           => array($docs, $tests),
@@ -63,10 +65,12 @@ class CleanupRules
             'phenx/php-font-lib'                    => array($docs, $tests. 'www'),
             'phpdocumentor/reflection-docblock'     => array($docs, $tests),
             'phpoffice/phpexcel'                    => array($docs, $tests, 'Examples unitTests changelog.txt'),
+            'phpoffice/phpspreadsheet'              => array($docs, $tests, 'samples'),
             'phpseclib/phpseclib'                   => array($docs, $tests, 'build'),
             'predis/predis'                         => array($docs, $tests, 'bin'),
             'psr/log'                               => array($docs, $tests),
             'psy/psysh'                             => array($docs, $tests),
+            'quickbooks/v3-php-sdk'                 => array($docs, $tests, 'docs docs/* src/XSD2PHP/test src/XSD2PHP/test/*'),
             'rcrowe/twigbridge'                     => array($docs, $tests),
             'simplepie/simplepie'                   => array($docs, $tests, 'build compatibility_test ROADMAP.md'),
             'stack/builder'                         => array($docs, $tests),
@@ -93,6 +97,9 @@ class CleanupRules
             'venturecraft/revisionable'             => array($docs, $tests),
             'vlucas/phpdotenv'                      => array($docs, $tests),
             'willdurand/geocoder'                   => array($docs, $tests),
+            'willdurand/geocoder'                   => array($docs, $tests),
+            
+
         );
     }
 }
