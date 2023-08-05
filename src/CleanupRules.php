@@ -97,8 +97,6 @@ class CleanupRules
             'venturecraft/revisionable'             => array($docs, $tests),
             'vlucas/phpdotenv'                      => array($docs, $tests),
             'willdurand/geocoder'                   => array($docs, $tests),
-            'willdurand/geocoder'                   => array($docs, $tests),
-            
 
         );
     }
