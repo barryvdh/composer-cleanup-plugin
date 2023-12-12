@@ -74,6 +74,7 @@ class CleanupRules
             'rcrowe/twigbridge'                     => array($docs, $tests),
             'simplepie/simplepie'                   => array($docs, $tests, 'build compatibility_test ROADMAP.md'),
             'stack/builder'                         => array($docs, $tests),
+            'squizlabs/php_codesniffer'             => array($docs, $tests),
             'swiftmailer/swiftmailer'               => array($docs, $tests, 'build* notes test-suite create_pear_package.php'),
             'symfony/browser-kit'                   => array($docs, $tests),
             'symfony/class-loader'                  => array($docs, $tests),
